@@ -9,7 +9,7 @@ spec:
   image: "container-registry.oracle.com/middleware/weblogic:12.2.1.4"
   imagePullPolicy: "IfNotPresent"
   webLogicCredentialsSecret:
-    name: "wls-test-domain-secret"
+    name: "wls-test-domain-weblogic-credentials"
   serverStartPolicy: "IF_NEEDED"
   replicas: 2
   serverPod:
