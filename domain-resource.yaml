@@ -1,0 +1,25 @@
+apiVersion: "weblogic.oracle/v8"
+kind: Domain
+metadata:
+  name: wls-test-domain
+  namespace: wls-test-domain-ns
+spec:
+  domainHome: "/u01/oracle/user_projects/domains/wls-test-domain"
+  domainUID: "wls-test-domain"
+  image: "container-registry.oracle.com/middleware/weblogic:12.2.1.4"
+  imagePullPolicy: "IfNotPresent"
+  webLogicCredentialsSecret:
+    name: "wls-test-domain-secret"
+  serverStartPolicy: "IF_NEEDED"
+  replicas: 2
+  serverPod:
+    env:
+      - name: JAVA_OPTIONS
+        value: "-Dweblogic.StdoutDebugEnabled=false"
+      - name: USER_MEM_ARGS
+        value: "-Djava.security.egd=file:/dev/./urandom"
+  adminServer:
+    serverStartState: "RUNNING"
+  clusters:
+    - clusterName: "cluster-1"
+      serverStartState: "RUNNING"
