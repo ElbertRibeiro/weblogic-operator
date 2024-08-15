@@ -4,12 +4,10 @@ metadata:
   name: wls-test-domain
   namespace: wls-test-domain-ns
 spec:
-  domainHome: "/u01/oracle/user_projects/domains/wls-test-domain"
-  domainUID: "wls-test-domain"
+  domainHome: "/u01/oracle/user_projects/domains/base_domain"
+  domainUID: "base_domain"
   image: "container-registry.oracle.com/middleware/weblogic:12.2.1.4"
   imagePullPolicy: "IfNotPresent"
-  webLogicCredentialsSecret:
-    name: "wls-test-domain-weblogic-credentials"
   serverStartPolicy: "IF_NEEDED"
   replicas: 2
   serverPod:
