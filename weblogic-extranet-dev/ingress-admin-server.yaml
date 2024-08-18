@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: weblogic-extranet-dev-adminserver-ingress
+  namespace: weblogic-extranet-dev
+  labels:
+    name: weblogic-extranet-dev-adminserver-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: weblogic-extranet-dev-adminserver.apps-h.sefa.pa.gov.br
+      http:
+        paths:
+          - path: /console
+            pathType: Prefix
+            backend:
+              service:
+                name: weblogic-extranet-dev-admin-server
+                port:
+                  number: 7001
