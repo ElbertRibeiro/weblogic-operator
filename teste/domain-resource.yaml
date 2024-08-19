@@ -108,6 +108,26 @@ spec:
       requests:
         cpu: "250m"
         memory: "768Mi"
+    livenessProbe:
+        httpGet:
+          path: /weblogic/ready
+          port: 7001
+          scheme: HTTP
+        initialDelaySeconds: 600
+        timeoutSeconds: 20
+        periodSeconds: 45
+        successThreshold: 1
+        failureThreshold: 1
+    readinessProbe:
+        httpGet:
+          path: /weblogic/ready
+          port: 7001
+          scheme: HTTP
+        initialDelaySeconds: 600
+        timeoutSeconds: 40
+        periodSeconds: 40
+        successThreshold: 1
+        failureThreshold: 1
 
     # Optional volumes and mounts for the domain's pods. See also 'logHome'.
     #volumes:
